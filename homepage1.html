@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spit Bank Login</title>
+    <link rel="stylesheet" href="homepage.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Bank building banner -->
+        <div class="bank-banner">
+            <h1>SPIT BANK</h1>
+        </div>
+
+        <!-- Login form -->
+        <div class="login-form">
+            <h2>Welcome to Save Money</h2>
+            <form id="loginForm">
+                <!-- Username input -->
+                <div class="input-field">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" placeholder="Enter Username">
+                    <small id="usernameError"></small>
+                </div>
+
+                <!-- Password input -->
+                <div class="input-field">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" placeholder="Enter Password">
+                    <small id="passwordError"></small>
+                </div>
+
+                <!-- Submit button -->
+                <button type="submit">Login</button>
+            </form>
+        </div>
+    </div>
+    
+    <!-- Include external JS file -->
+    <script src="homepage.js"></script>
+</body>
+</html>
