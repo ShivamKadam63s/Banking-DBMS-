@@ -24,19 +24,35 @@
             width: 100%;
             z-index: 100;
             padding: 0 20px;
+            background: rgba(0, 0, 0, 0.5); /* Added background for visibility */
         }
         .nav {
             max-width: 1100px;
             width: 100%;
             margin: 0 auto;
         }
-        .nav, .nav_item {
+        .nav{
             display: flex;
             height: 100%;
             align-items: center;
             justify-content: space-between;
         }
-        .nav_logo, .nav_link, .button {
+        .nav_item {
+            display: flex;
+            justify-content: space-between; /* Space links evenly */
+            flex-grow: 1; /* Make nav items take full width */
+        }
+
+        .nav_link {
+            flex-grow: 1; /* Allow links to grow */
+            text-align: center; /* Center the text */
+            padding: 10px 0; /* Add some vertical padding */
+            color: #fff;
+            transition: color 0.3s; /* Smooth color transition */
+        }
+
+
+        .nav_logo, .button {
             color: #fff;
         }
         .nav_logo {
@@ -64,7 +80,7 @@
             position: relative;
             height: 100vh;
             width: 100%;
-            background-image: url("C:/Users/91932/Downloads/Banking DBMS/bank_background.jpeg");
+            background-image: url("homepage.jpg"); /* Adjusted to a relative path */
             background-size: cover;
             background-position: center;
         }
@@ -231,7 +247,7 @@
             <i class="uil uil-times form_close"></i>
             <!-- Login Form -->
             <div class="form login_form">
-                <form action="#">
+                <form action="#" method="POST"> <!-- Added method -->
                     <h2>Login</h2>
                     <div class="input_box">
                         <input type="email" placeholder="Enter your email" required />
@@ -249,14 +265,14 @@
                         </span>
                         <a href="#" class="forgot_pw">Forgot password?</a>
                     </div>
-                    <button class="button">Login Now</button>
+                    <button class="button" type="submit">Login Now</button> <!-- Added type -->
                     <div class="login_signup">Don't have an account? <a href="#" id="signup">Signup</a></div>
                 </form>
             </div>
 
             <!-- Signup Form -->
             <div class="form signup_form">
-                <form action="#">
+                <form action="#" method="POST"> <!-- Added method -->
                     <h2>Signup</h2>
                     <div class="input_box">
                         <input type="email" placeholder="Enter your email" required />
@@ -272,7 +288,7 @@
                         <i class="uil uil-lock password"></i>
                         <i class="uil uil-eye-slash pw_hide"></i>
                     </div>
-                    <button class="button">Signup Now</button>
+                    <button class="button" type="submit">Signup Now</button> <!-- Added type -->
                     <div class="login_signup">Already have an account? <a href="#" id="login">Login</a></div>
                 </form>
             </div>
