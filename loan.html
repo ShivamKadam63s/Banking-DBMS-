@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loan</title>
+    <style>
+        @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Poppins", sans-serif;
+        }
+        a {
+            text-decoration: none;
+        }
+        .header {
+            height: 80px;
+            width: 100%;
+            z-index: 100;
+            padding: 0 20px;
+            background: rgba(0, 0, 0, 0.5);
+        }
+        .nav {
+            max-width: 1100px;
+            width: 100%;
+            margin: 0 auto;
+            display: flex;
+            height: 100%;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .nav_item {
+            display: flex;
+            justify-content: space-between;
+            flex-grow: 1;
+        }
+        .nav_link {
+            flex-grow: 1;
+            text-align: center;
+            padding: 10px 0;
+            color: #fff;
+            transition: color 0.3s;
+        }
+        .nav_logo, .button {
+            color: #fff;
+        }
+        .nav_logo {
+            font-size: 25px;
+        }
+        .nav_item {
+            column-gap: 25px;
+        }
+        .nav_link:hover {
+            color: #d9d9d9;
+        }
+        .button {
+            padding: 6px 24px;
+            border: 2px solid #fff;
+            background: transparent;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+        .button:active {
+            transform: scale(0.98);
+        }
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            width: 80%;
+            margin: 100px auto;
+            overflow: hidden;
+            text-align: center;
+        }
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+        .clickbait {
+            font-size: 24px;
+            color: #ff4500;
+            margin: 20px 0;
+        }
+        .balance {
+            background: #e2e2e2;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+        .functions {
+            display: flex;
+            justify-content: center;
+            margin: 20px 0;
+        }
+        button {
+            background: #007bff;
+            color: #fff;
+            padding: 15px 20px;
+            margin: 0 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background 0.3s;
+        }
+        button:hover {
+            background: #0056b3;
+        }
+        .form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 20px 0;
+        }
+        .hidden {
+            display: none;
+        }
+        .transaction-history {
+            margin-top: 20px;
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+        }
+        /* Profile Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+
+        .modal-content {
+            background-color: #fff;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 320px; /* Adjusted width */
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .profile-header {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 20px; /* Spacing below profile header */
+        }
+
+        .profile-picture {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            margin-bottom: 10px;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .profile-info {
+            text-align: left;
+            margin-top: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start; /* Align items to the start */
+            gap: 8px; /* Spacing between items */
+        }
+
+        .form-button {
+            background: #007bff;
+            color: #fff;
+            padding: 8px 12px; /* Adjusted padding */
+            margin: 5px 0; /* Adjusted margin */
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px; /* Smaller font size */
+            transition: background 0.3s;
+        }
+
+        .form-button:hover {
+            background: #0056b3;
+        }
+
+        /* Password Section */
+        .password-section {
+            margin-top: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            width: 100%;
+        }
+
+        .password-field {
+            display: flex;
+            align-items: center;
+            width: 100%;
+            margin-bottom: 10px;
+        }
+
+        .password-field input {
+            flex-grow: 1;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            margin-right: 8px;
+        }
+
+        .change-password-icon {
+            cursor: pointer;
+            color: #007bff;
+        }
+
+        .notification {
+            display: none;
+            margin-top: 10px;
+            color: green;
+            font-size: 14px;
+        }
+
+
+
+
+
+
+        .loan-section {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin: 20px 0;
+        }
+        .loan-box {
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            padding: 20px;
+            margin: 10px;
+            cursor: pointer;
+            transition: transform 0.3s;
+            width: 200px;
+            text-align: center;
+        }
+        .loan-box:hover {
+            transform: scale(1.05);
+        }
+        .loan-icon {
+            font-size: 40px;
+        }
+        .loan-calculator {
+            display: none;
+            margin: 20px;
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+    </style>
+</head>
+<body>
+    <header class="header">
+        <nav class="nav">
+            <a href="#" class="nav_logo">Query Bank</a>
+            <ul class="nav_items">
+                <li class="nav_item">
+                    <a href="#" class="nav_link">Home</a>
+                    <a href="#" class="nav_link">Product</a>
+                    <a href="#" class="nav_link">Services</a>
+                    <a href="#" class="nav_link">Contact</a>
+                </li>
+            </ul>
+            <button class="button" id="form-open">Profile</button>
+        </nav>
+    </header>
+
+    <div class="container">
+        <h1>Welcome to Your Online Banking Portal!</h1>
+        <div class="balance">
+            <h2>Account Balance: $<span id="balance">1000.00</span></h2>
+        </div>
+        <div id="formContainer"></div>
+    </div>
+    <div class="container">
+        
+        
+        <!-- Loan Section -->
+        <h2>Available Loans</h2>
+        <div class="loan-section">
+            <div class="loan-box" onclick="openLoanCalculator('personal')">
+                <div class="loan-icon">🏠</div>
+                <div class="loan-type">Personal Loan</div>
+                <div class="loan-rate">Rate of Interest: 7.5%</div>
+                <div class="loan-amount">Max Amount: $50,000</div>
+            </div>
+            <div class="loan-box" onclick="openLoanCalculator('home')">
+                <div class="loan-icon">🏡</div>
+                <div class="loan-type">Home Loan</div>
+                <div class="loan-rate">Rate of Interest: 8.5%</div>
+                <div class="loan-amount">Max Amount: $300,000</div>
+            </div>
+            <div class="loan-box" onclick="openLoanCalculator('auto')">
+                <div class="loan-icon">🚗</div>
+                <div class="loan-type">Auto Loan</div>
+                <div class="loan-rate">Rate of Interest: 9.0%</div>
+                <div class="loan-amount">Max Amount: $100,000</div>
+            </div>
+        </div>
+
+        <div id="loanCalculator" class="loan-calculator">
+            <h3 id="selectedLoanType">Loan Type</h3>
+            <input type="number" id="loanAmount" placeholder="Enter Loan Amount" />
+            <select id="loanDuration">
+                <option value="6">6 months</option>
+                <option value="12">12 months</option>
+                <option value="18">18 months</option>
+                <option value="24">24 months</option>
+                <option value="36">36 months</option>
+            </select>
+            <button class="form-button" onclick="calculateMonthlyPayment()">Calculate</button>
+            <div id="result"></div>
+        </div>
+
+        <div id="formContainer"></div>
+        <div id="transactionHistory" class="hidden"></div>
+    </div>
+    
+
+    <!-- Profile Modal -->
+    <div id="profileModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeProfile()">&times;</span>
+            <div class="profile-header">
+                <img src="profile.png" alt="Profile Picture" class="profile-picture">
+                <h2 id="fullName">John Doe</h2>
+            </div>
+            <div class="profile-info">
+                <p><strong>Username:</strong> <span id="username">john_doe</span></p>
+                <p><strong>Account ID:</strong> <span id="acc_id">123456789</span></p>
+                <p><strong>Account Balance:</strong> $<span id="acc_balance">1000.00</span></p>
+                <p><strong>Aadhar ID:</strong> <span id="aadharId">123456789012</span></p>
+                <p><strong>Mobile No:</strong> <span id="mobileNo">+91 98765 43210</span></p>
+                <p><strong>Address:</strong> <span id="address">123 Main St, City, Country</span></p>
+                <p><strong>Gender:</strong> <span id="gender">Male</span></p>
+            </div>
+            <div class="password-section">
+                <h3>Change Password</h3>
+                <div class="password-field">
+                    <input type="password" id="password" placeholder="New Password">
+                    <span class="change-password-icon" onclick="changePassword()">Change</span>
+                </div>
+                <div class="notification" id="passwordNotification">Password changed successfully!</div>
+            </div>
+        </div>
+    </div>
+    
+
+    <script>
+        let balance = 1000;
+        const transactions = [];
+
+        document.getElementById('depositBtn').addEventListener('click', () => {
+            showForm('deposit');
+        });
+
+        document.getElementById('withdrawBtn').addEventListener('click', () => {
+            showForm('withdraw');
+        });
+
+        document.getElementById('transferBtn').addEventListener('click', () => {
+            showForm('transfer');
+        });
+
+        document.getElementById('historyBtn').addEventListener('click', showTransactionHistory);
+
+        document.getElementById('form-open').addEventListener('click', openProfile);
+
+        function showForm(type) {
+            const formContainer = document.getElementById('formContainer');
+            formContainer.innerHTML = '';
+
+            let formHTML = `<div class="form">
+                <h2>${type.charAt(0).toUpperCase() + type.slice(1)}</h2>`;
+            
+            if (type === 'deposit') {
+                formHTML += `<select id="depositOption">
+                    <option value="cash">Cash Deposit</option>
+                    <option value="check">Check Deposit</option>
+                    <option value="transfer">Transfer from another account</option>
+                </select>`;
+            } else if (type === 'withdraw') {
+                formHTML += `<select id="withdrawOption">
+                    <option value="atm">ATM Withdrawal</option>
+                    <option value="counter">Counter Withdrawal</option>
+                </select>`;
+            }
+
+            formHTML += `<input type="number" id="${type}Amount" placeholder="Amount" required>
+                ${type === 'transfer' ? '<input type="text" id="accountNumber" placeholder="Account Number" required>' : ''}
+                <button class="form-button" onclick="${type}()">Submit</button>
+                <button class="form-button" onclick="clearForm()">Cancel</button>
+            </div>`;
+            formContainer.innerHTML = formHTML;
+        }
+
+        function clearForm() {
+            document.getElementById('formContainer').innerHTML = '';
+        }
+
+        function deposit() {
+            const amount = parseFloat(document.getElementById('depositAmount').value);
+            const option = document.getElementById('depositOption').value;
+            if (amount > 0) {
+                balance += amount;
+                transactions.push(`Deposited: $${amount} (${option})`);
+                updateBalance();
+                clearForm();
+                alert(`You've successfully deposited $${amount} via ${option}!`);
+            } else {
+                alert('Please enter a valid amount.');
+            }
+        }
+
+        function withdraw() {
+            const amount = parseFloat(document.getElementById('withdrawAmount').value);
+            const option = document.getElementById('withdrawOption').value;
+            if (amount > 0 && amount <= balance) {
+                balance -= amount;
+                transactions.push(`Withdrew: $${amount} (${option})`);
+                updateBalance();
+                clearForm();
+                alert(`You've successfully withdrawn $${amount} via ${option}!`);
+            } else {
+                alert('Invalid withdrawal amount.');
+            }
+        }
+
+        function transfer() {
+            const amount = parseFloat(document.getElementById('transferAmount').value);
+            const accountNumber = document.getElementById('accountNumber').value;
+            if (amount > 0 && amount <= balance && accountNumber) {
+                balance -= amount;
+                transactions.push(`Transferred: $${amount} to account ${accountNumber}`);
+                updateBalance();
+                clearForm();
+                alert(`You've successfully transferred $${amount} to account ${accountNumber}!`);
+            } else {
+                alert('Invalid transfer amount or account number.');
+            }
+        }
+
+        function updateBalance() {
+            document.getElementById('balance').textContent = balance.toFixed(2);
+            document.getElementById('acc_balance').textContent = balance.toFixed(2); // Update profile balance
+        }
+
+        function showTransactionHistory() {
+            const historyContainer = document.getElementById('transactionHistory');
+            historyContainer.innerHTML = '<h2>Transaction History</h2>';
+            
+            transactions.forEach(transaction => {
+                historyContainer.innerHTML += `<div class="transaction">${transaction}</div>`;
+            });
+
+            historyContainer.classList.toggle('hidden');
+        }
+
+        function openProfile() {
+            document.getElementById('profileModal').style.display = "block";
+        }
+
+        function closeProfile() {
+            document.getElementById('profileModal').style.display = "none";
+        }
+
+        function changePassword() {
+            const newPassword = prompt("Enter new password:");
+            if (newPassword) {
+                document.getElementById('password').value = newPassword;
+                document.getElementById('notification').style.display = "block";
+                setTimeout(() => {
+                    document.getElementById('notification').style.display = "none";
+                }, 3000);
+            }
+        }
+
+        window.onclick = function(event) {
+            const modal = document.getElementById('profileModal');
+            if (event.target == modal) {
+                closeProfile();
+            }
+        }
+
+
+
+        
+
+
+
+
+
+        function openLoanCalculator(type) {
+            document.getElementById('selectedLoanType').textContent = type.charAt(0).toUpperCase() + type.slice(1) + ' Loan';
+            document.getElementById('loanCalculator').style.display = 'block';
+        }
+
+        function calculateMonthlyPayment() {
+            const loanAmount = parseFloat(document.getElementById('loanAmount').value);
+            const duration = parseInt(document.getElementById('loanDuration').value);
+            let rateOfInterest;
+
+            // Different ROI for each loan type
+            const loanType = document.getElementById('selectedLoanType').textContent.toLowerCase().includes('personal') ? 'personal' :
+                             document.getElementById('selectedLoanType').textContent.toLowerCase().includes('home') ? 'home' : 'auto';
+
+            if (loanType === 'personal') {
+                if (duration === 6) rateOfInterest = 7.5;
+                else if (duration === 12) rateOfInterest = 8.0;
+                else if (duration === 18) rateOfInterest = 8.5;
+                else if (duration === 24) rateOfInterest = 9.0;
+                else if (duration === 36) rateOfInterest = 9.5;
+            } else if (loanType === 'home') {
+                if (duration === 6) rateOfInterest = 8.5;
+                else if (duration === 12) rateOfInterest = 9.0;
+                else if (duration === 18) rateOfInterest = 9.5;
+                else if (duration === 24) rateOfInterest = 10.0;
+                else if (duration === 36) rateOfInterest = 10.5;
+            } else if (loanType === 'auto') {
+                if (duration === 6) rateOfInterest = 9.0;
+                else if (duration === 12) rateOfInterest = 9.5;
+                else if (duration === 18) rateOfInterest = 10.0;
+                else if (duration === 24) rateOfInterest = 10.5;
+                else if (duration === 36) rateOfInterest = 11.0;
+            }
+
+            const monthlyRate = rateOfInterest / 100 / 12;
+            const numPayments = duration;
+            const monthlyPayment = (loanAmount * monthlyRate) / (1 - Math.pow(1 + monthlyRate, -numPayments));
+            const totalPayment = monthlyPayment * numPayments;
+            const finalDate = new Date();
+            finalDate.setMonth(finalDate.getMonth() + numPayments);
+
+            document.getElementById('result').innerHTML = `
+                <h4>Loan Details:</h4>
+                <p>Monthly Payment: $${monthlyPayment.toFixed(2)}</p>
+                <p>Total Payment: $${totalPayment.toFixed(2)}</p>
+                <p>Final Date of Payment: ${finalDate.toLocaleDateString()}</p>
+            `;
+        }
+    </script>
+</body>
+</html>
