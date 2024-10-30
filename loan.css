@@ -1,0 +1,188 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+a {
+    text-decoration: none;
+}
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.header {
+    height: 80px;
+    width: 100%;
+    z-index: 100;
+    padding: 0 20px;
+    background: rgba(0, 0, 0, 0.5);
+}
+.nav {
+    max-width: 1100px;
+    width: 100%;
+    margin: 0 auto;
+    display: flex;
+    height: 100%;
+    align-items: center;
+    justify-content: space-between;
+}
+.nav_item {
+    display: flex;
+    justify-content: space-between;
+    flex-grow: 1;
+}
+.nav_link {
+    flex-grow: 1;
+    text-align: center;
+    padding: 10px 0;
+    color: #fff;
+    transition: color 0.3s;
+}
+.nav_logo, .button {
+    color: #fff;
+}
+.nav_logo {
+    font-size: 25px;
+}
+.nav_item {
+    column-gap: 25px;
+}
+.nav_link:hover {
+    color: #d9d9d9;
+}
+.button {
+    padding: 8px 24px;
+    border: 2px solid #fff;
+    background: transparent;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.3s, color 0.3s;
+}
+.button:hover {
+    background: #fff;
+    color: #333;
+}
+.container {
+    max-width: 800px;
+    margin: 100px auto;
+    text-align: center;
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+h1, h2 {
+    margin-bottom: 20px;
+    color: #007bff;
+}
+.balance {
+    background: #e2e2e2;
+    padding: 20px;
+    border-radius: 10px;
+    margin: 20px 0;
+    font-size: 1.2em;
+}
+.loan-section {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin: 20px 0;
+}
+.loan-box {
+    background: #e7f1ff;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    padding: 20px;
+    margin: 10px;
+    cursor: pointer;
+    transition: transform 0.3s, box-shadow 0.3s, background 0.3s;
+    width: 220px;
+    text-align: center;
+}
+.loan-box:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    background: #d0e9ff;
+}
+.loan-type {
+    font-weight: 500;
+    font-size: 1.2em;
+    color: #007bff;
+}
+
+/* Modal Styles */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.7);
+}
+.modal-content {
+    background-color: #fff;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 400px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+.close:hover {
+    color: black;
+}
+.form-button {
+    background: #007bff;
+    color: #fff;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background 0.3s;
+}
+.form-button:hover {
+    background: #0056b3;
+}
+/* Loan Form */
+.loan-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 20px 0;
+}
+.loan-form input {
+    padding: 10px;
+    margin: 5px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 90%;
+}
+.loan-radio {
+    display: flex;
+    flex-direction: column;
+    margin: 10px 0;
+    width: 90%;
+    text-align: left;
+}
+.loan-radio label {
+    padding: 10px 0;
+}
