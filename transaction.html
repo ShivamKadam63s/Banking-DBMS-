@@ -4,250 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Online Banking</title>
-    <style>
-        @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: "Poppins", sans-serif;
-        }
-        a {
-            text-decoration: none;
-        }
-        .header {
-            height: 80px;
-            width: 100%;
-            z-index: 100;
-            padding: 0 20px;
-            background: rgba(0, 0, 0, 0.5);
-        }
-        .nav {
-            max-width: 1100px;
-            width: 100%;
-            margin: 0 auto;
-            display: flex;
-            height: 100%;
-            align-items: center;
-            justify-content: space-between;
-        }
-        .nav_item {
-            display: flex;
-            justify-content: space-between;
-            flex-grow: 1;
-        }
-        .nav_link {
-            flex-grow: 1;
-            text-align: center;
-            padding: 10px 0;
-            color: #fff;
-            transition: color 0.3s;
-        }
-        .nav_logo, .button {
-            color: #fff;
-        }
-        .nav_logo {
-            font-size: 25px;
-        }
-        .nav_item {
-            column-gap: 25px;
-        }
-        .nav_link:hover {
-            color: #d9d9d9;
-        }
-        .button {
-            padding: 6px 24px;
-            border: 2px solid #fff;
-            background: transparent;
-            border-radius: 6px;
-            cursor: pointer;
-        }
-        .button:active {
-            transform: scale(0.98);
-        }
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            margin: 0;
-            padding: 0;
-        }
-        .container {
-            width: 80%;
-            margin: 100px auto;
-            overflow: hidden;
-            text-align: center;
-        }
-        h1 {
-            color: #333;
-            margin-bottom: 20px;
-        }
-        .clickbait {
-            font-size: 24px;
-            color: #ff4500;
-            margin: 20px 0;
-        }
-        .balance {
-            background: #e2e2e2;
-            padding: 20px;
-            border-radius: 10px;
-            margin: 20px 0;
-        }
-        .functions {
-            display: flex;
-            justify-content: center;
-            margin: 20px 0;
-        }
-        button {
-            background: #007bff;
-            color: #fff;
-            padding: 15px 20px;
-            margin: 0 10px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 16px;
-            transition: background 0.3s;
-        }
-        button:hover {
-            background: #0056b3;
-        }
-        .form {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin: 20px 0;
-        }
-        .hidden {
-            display: none;
-        }
-        .transaction-history {
-            margin-top: 20px;
-            background: #fff;
-            padding: 20px;
-            border-radius: 10px;
-        }
-        /* Profile Modal */
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 1000;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            overflow: auto;
-            background-color: rgba(0, 0, 0, 0.5);
-        }
-
-        .modal-content {
-            background-color: #fff;
-            margin: 15% auto;
-            padding: 20px;
-            border: 1px solid #888;
-            width: 320px; /* Adjusted width */
-            border-radius: 8px;
-            text-align: center;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        }
-
-        .profile-header {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin-bottom: 20px; /* Spacing below profile header */
-        }
-
-        .profile-picture {
-            width: 80px;
-            height: 80px;
-            border-radius: 50%;
-            margin-bottom: 10px;
-        }
-
-        .close {
-            color: #aaa;
-            float: right;
-            font-size: 28px;
-            font-weight: bold;
-            cursor: pointer;
-        }
-
-        .close:hover,
-        .close:focus {
-            color: black;
-            text-decoration: none;
-            cursor: pointer;
-        }
-
-        .profile-info {
-            text-align: left;
-            margin-top: 10px;
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start; /* Align items to the start */
-            gap: 8px; /* Spacing between items */
-        }
-
-        .form-button {
-            background: #007bff;
-            color: #fff;
-            padding: 8px 12px; /* Adjusted padding */
-            margin: 5px 0; /* Adjusted margin */
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 14px; /* Smaller font size */
-            transition: background 0.3s;
-        }
-
-        .form-button:hover {
-            background: #0056b3;
-        }
-
-        /* Password Section */
-        .password-section {
-            margin-top: 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-            width: 100%;
-        }
-
-        .password-field {
-            display: flex;
-            align-items: center;
-            width: 100%;
-            margin-bottom: 10px;
-        }
-
-        .password-field input {
-            flex-grow: 1;
-            padding: 8px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            margin-right: 8px;
-        }
-
-        .change-password-icon {
-            cursor: pointer;
-            color: #007bff;
-        }
-
-        .notification {
-            display: none;
-            margin-top: 10px;
-            color: green;
-            font-size: 14px;
-        }
-    </style>
+    <link rel="stylesheet" href="transaction.css">
 </head>
 <body>
     <header class="header">
         <nav class="nav">
-            <a href="#" class="nav_logo">Query Bank</a>
+            <a href="login.html" class="nav_logo">Query Bank</a>
             <ul class="nav_items">
                 <li class="nav_item">
-                    <a href="#" class="nav_link">Home</a>
+                    <a href="homepage.html" class="nav_link">Home</a>
                     <a href="#" class="nav_link">Product</a>
                     <a href="#" class="nav_link">Services</a>
                     <a href="#" class="nav_link">Contact</a>
@@ -256,20 +21,28 @@
             <button class="button" id="form-open">Profile</button>
         </nav>
     </header>
-    <div class="container">
-        <h1>Welcome to Your Online Banking Portal!</h1>
-        <div class="clickbait">Unlock Amazing Features: Manage Your Money Like a Pro!</div>
-        <div class="balance">
-            <h2>Account Balance: $<span id="balance">1000.00</span></h2>
+
+    <div class="actions">
+        <div class="action-divider"></div>
+        <h2>Transactions</h2>
+        <div class="action-container">
+            <div class="action-button" onclick="openDeposit()">
+                <h3>Deposit</h3>
+            </div>
+            <div class="action-button" onclick="openWithdraw()">
+                <h3>Withdraw</h3>
+            </div>
+            <div class="action-button" onclick="checkBalance()">
+                <h3>Check Balance</h3>
+            </div>
+            <div class="action-button" onclick="openTransfer()">
+                <h3>Online Transfer</h3>
+            </div>
+            <div class="action-button" onclick="viewTransactions()">
+                <h3>Transaction History</h3>
+            </div>
         </div>
-        <div class="functions">
-            <button id="depositBtn">Deposit</button>
-            <button id="withdrawBtn">Withdraw</button>
-            <button id="transferBtn">Transfer</button>
-            <button id="historyBtn">Transaction History</button>
-        </div>
-        <div id="formContainer"></div>
-        <div id="transactionHistory" class="hidden"></div>
+        <div class="action-divider"></div>
     </div>
 
     <!-- Profile Modal -->
@@ -289,152 +62,58 @@
                 <p><strong>Address:</strong> <span id="address">123 Main St, City, Country</span></p>
                 <p><strong>Gender:</strong> <span id="gender">Male</span></p>
             </div>
-            <div class="password-section">
-                <h3>Change Password</h3>
-                <div class="password-field">
-                    <input type="password" id="password" placeholder="Enter your password" readonly>
-                    <span class="change-password-icon" onclick="changePassword()">🔄</span>
-                </div>
-                <div id="notification" class="notification">Password changed successfully!</div>
-            </div>
         </div>
     </div>
 
-    <script>
-        let balance = 1000;
-        const transactions = [];
+    <!-- Deposit Modal -->
+    <div id="depositModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeDeposit()">&times;</span>
+            <h2>Deposit Amount</h2>
+            <input type="number" id="depositAmount" placeholder="Enter amount" />
+            <button onclick="deposit()">Confirm</button>
+        </div>
+    </div>
 
-        document.getElementById('depositBtn').addEventListener('click', () => {
-            showForm('deposit');
-        });
+    <!-- Withdraw Modal -->
+    <div id="withdrawModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeWithdraw()">&times;</span>
+            <h2>Withdraw Amount</h2>
+            <input type="number" id="withdrawAmount" placeholder="Enter amount" />
+            <button onclick="withdraw()">Confirm</button>
+        </div>
+    </div>
 
-        document.getElementById('withdrawBtn').addEventListener('click', () => {
-            showForm('withdraw');
-        });
+    <!-- Transfer Modal -->
+    <div id="transferModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeTransfer()">&times;</span>
+            <h2>Online Transfer</h2>
+            <input type="text" id="transferAccId" placeholder="Account ID to send to" />
+            <input type="number" id="transferAmount" placeholder="Enter amount" />
+            <button onclick="transfer()">Confirm</button>
+        </div>
+    </div>
 
-        document.getElementById('transferBtn').addEventListener('click', () => {
-            showForm('transfer');
-        });
+    <!-- Balance Modal -->
+    <div id="balanceModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeBalance()">&times;</span>
+            <h2>Account Balance</h2>
+            <p>Current Balance: $<span id="currentBalance">0.00</span></p>
+        </div>
+    </div>
 
-        document.getElementById('historyBtn').addEventListener('click', showTransactionHistory);
+    <!-- Transaction History Modal -->
+    <div id="transactionModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeTransactions()">&times;</span>
+            <h2>Transaction History</h2>
+            <div id="transactionHistory"></div>
+        </div>
+    </div>
 
-        document.getElementById('form-open').addEventListener('click', openProfile);
-
-        function showForm(type) {
-            const formContainer = document.getElementById('formContainer');
-            formContainer.innerHTML = '';
-
-            let formHTML = `<div class="form">
-                <h2>${type.charAt(0).toUpperCase() + type.slice(1)}</h2>`;
-            
-            if (type === 'deposit') {
-                formHTML += `<select id="depositOption">
-                    <option value="cash">Cash Deposit</option>
-                    <option value="check">Check Deposit</option>
-                    <option value="transfer">Transfer from another account</option>
-                </select>`;
-            } else if (type === 'withdraw') {
-                formHTML += `<select id="withdrawOption">
-                    <option value="atm">ATM Withdrawal</option>
-                    <option value="counter">Counter Withdrawal</option>
-                </select>`;
-            }
-
-            formHTML += `<input type="number" id="${type}Amount" placeholder="Amount" required>
-                ${type === 'transfer' ? '<input type="text" id="accountNumber" placeholder="Account Number" required>' : ''}
-                <button class="form-button" onclick="${type}()">Submit</button>
-                <button class="form-button" onclick="clearForm()">Cancel</button>
-            </div>`;
-            formContainer.innerHTML = formHTML;
-        }
-
-        function clearForm() {
-            document.getElementById('formContainer').innerHTML = '';
-        }
-
-        function deposit() {
-            const amount = parseFloat(document.getElementById('depositAmount').value);
-            const option = document.getElementById('depositOption').value;
-            if (amount > 0) {
-                balance += amount;
-                transactions.push(`Deposited: $${amount} (${option})`);
-                updateBalance();
-                clearForm();
-                alert(`You've successfully deposited $${amount} via ${option}!`);
-            } else {
-                alert('Please enter a valid amount.');
-            }
-        }
-
-        function withdraw() {
-            const amount = parseFloat(document.getElementById('withdrawAmount').value);
-            const option = document.getElementById('withdrawOption').value;
-            if (amount > 0 && amount <= balance) {
-                balance -= amount;
-                transactions.push(`Withdrew: $${amount} (${option})`);
-                updateBalance();
-                clearForm();
-                alert(`You've successfully withdrawn $${amount} via ${option}!`);
-            } else {
-                alert('Invalid withdrawal amount.');
-            }
-        }
-
-        function transfer() {
-            const amount = parseFloat(document.getElementById('transferAmount').value);
-            const accountNumber = document.getElementById('accountNumber').value;
-            if (amount > 0 && amount <= balance && accountNumber) {
-                balance -= amount;
-                transactions.push(`Transferred: $${amount} to account ${accountNumber}`);
-                updateBalance();
-                clearForm();
-                alert(`You've successfully transferred $${amount} to account ${accountNumber}!`);
-            } else {
-                alert('Invalid transfer amount or account number.');
-            }
-        }
-
-        function updateBalance() {
-            document.getElementById('balance').textContent = balance.toFixed(2);
-            document.getElementById('acc_balance').textContent = balance.toFixed(2); // Update profile balance
-        }
-
-        function showTransactionHistory() {
-            const historyContainer = document.getElementById('transactionHistory');
-            historyContainer.innerHTML = '<h2>Transaction History</h2>';
-            
-            transactions.forEach(transaction => {
-                historyContainer.innerHTML += `<div class="transaction">${transaction}</div>`;
-            });
-
-            historyContainer.classList.toggle('hidden');
-        }
-
-        function openProfile() {
-            document.getElementById('profileModal').style.display = "block";
-        }
-
-        function closeProfile() {
-            document.getElementById('profileModal').style.display = "none";
-        }
-
-        function changePassword() {
-            const newPassword = prompt("Enter new password:");
-            if (newPassword) {
-                document.getElementById('password').value = newPassword;
-                document.getElementById('notification').style.display = "block";
-                setTimeout(() => {
-                    document.getElementById('notification').style.display = "none";
-                }, 3000);
-            }
-        }
-
-        window.onclick = function(event) {
-            const modal = document.getElementById('profileModal');
-            if (event.target == modal) {
-                closeProfile();
-            }
-        }
-    </script>
+    <script src="transaction.js"></script>
 </body>
 </html>
