@@ -3,6 +3,7 @@ import com.DBMSproj.app.daotemplates.*;
 import org.springframework.stereotype.Repository;
 // import java.util.*;
 import java.sql.*;
+import java.util.ArrayList;
 @Repository
 public class CustomerDAO extends TableDAO<Customer> {
     public CustomerDAO() throws SQLException{
@@ -37,8 +38,23 @@ public class CustomerDAO extends TableDAO<Customer> {
         );
         return customer;
     }
+    public Customer findByEmailPassword(String email, String password) {
+        ArrayList<Customer> resultSet = new ArrayList<>();
+        try {
+            String sql = "Select * from "+tableName+" where Email = ? and password = ?;";
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setString(1, email);
+            statement.setString(2, password);
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()) {
+                Customer entity = mapResultSetToEntity(rs);
+                resultSet.add(entity);
+            }
+        } catch(SQLException e) {}
+        return resultSet.get(0);
+    } 
+    
     // public List<Customer> findById(Long aadhar_id){
     //     return super.findById(aadhar_id);
     // }
-
 }

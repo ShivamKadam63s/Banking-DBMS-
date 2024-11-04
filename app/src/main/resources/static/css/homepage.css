@@ -17,7 +17,7 @@ body {
     padding: 0;
 }
 header {
-    background: #007bff;
+    background: rgba(0, 0, 0, 0.8);
     color: #fff;
     padding: 10px 20px;
     text-align: center;
@@ -33,6 +33,7 @@ header {
 .nav_logo {
     font-size: 24px;
     font-weight: bold;
+    color: #d9d9d9;
 }
 .nav_item {
     display: flex;
@@ -69,6 +70,7 @@ header {
     margin: auto;
     padding: 20px;
 }
+
 .features-services {
     display: flex;
     justify-content: space-around;
@@ -103,23 +105,37 @@ footer {
 }
 /* Modal Styles */
 .modal {
-    display: none;
+    visibility: hidden;
     position: fixed;
-    z-index: 1000;
+    z-index: 9999;  /* Make sure it's above everything */
     left: 0;
     top: 0;
     width: 100%;
     height: 100%;
-    overflow: auto;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.5);  /* Semi-transparent background */
 }
-.modal_content {
-    background-color: #fff;
+
+.modal-content {
+    background-color: white;
     margin: 15% auto;
     padding: 20px;
     border: 1px solid #888;
-    width: 300px;
-    border-radius: 10px;
+    width: 80%;
+    max-width: 500px;
+    border-radius: 5px;
+    position: relative;
+}
+
+#closeModal {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    cursor: pointer;
+    padding: 5px 10px;
+    background-color: #f44336;
+    color: white;
+    border: none;
+    border-radius: 3px;
 }
 
 
@@ -159,6 +175,7 @@ footer {
     pointer-events: none;
     transition: all 0.4s ease-out;
 }
+
 .home.show .form_container {
     opacity: 1;
     pointer-events: auto;

@@ -4,10 +4,15 @@
 /home/ubuntu/Documents/Projects/DBMSproj/app/src/main/java/com/DBMSproj/app/bankaccount/BankAccountDAO.java
 /home/ubuntu/Documents/Projects/DBMSproj/app/src/main/java/com/DBMSproj/app/bankaccount/BankAccountService.java
 /home/ubuntu/Documents/Projects/DBMSproj/app/src/main/java/com/DBMSproj/app/banktransaction/BankTransaction.java
+/home/ubuntu/Documents/Projects/DBMSproj/app/src/main/java/com/DBMSproj/app/banktransaction/BankTransactionController.java
 /home/ubuntu/Documents/Projects/DBMSproj/app/src/main/java/com/DBMSproj/app/banktransaction/BankTransactionDAO.java
+/home/ubuntu/Documents/Projects/DBMSproj/app/src/main/java/com/DBMSproj/app/banktransaction/BankTransactionService.java
 /home/ubuntu/Documents/Projects/DBMSproj/app/src/main/java/com/DBMSproj/app/customer/Customer.java
 /home/ubuntu/Documents/Projects/DBMSproj/app/src/main/java/com/DBMSproj/app/customer/CustomerController.java
 /home/ubuntu/Documents/Projects/DBMSproj/app/src/main/java/com/DBMSproj/app/customer/CustomerDAO.java
 /home/ubuntu/Documents/Projects/DBMSproj/app/src/main/java/com/DBMSproj/app/customer/CustomerService.java
 /home/ubuntu/Documents/Projects/DBMSproj/app/src/main/java/com/DBMSproj/app/daotemplates/TableDAO.java
 /home/ubuntu/Documents/Projects/DBMSproj/app/src/main/java/com/DBMSproj/app/loan/Loan.java
+/home/ubuntu/Documents/Projects/DBMSproj/app/src/main/java/com/DBMSproj/app/loan/LoanController.java
+/home/ubuntu/Documents/Projects/DBMSproj/app/src/main/java/com/DBMSproj/app/loan/LoanDAO.java
+/home/ubuntu/Documents/Projects/DBMSproj/app/src/main/java/com/DBMSproj/app/loan/LoanService.java

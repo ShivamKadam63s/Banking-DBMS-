@@ -37,5 +37,4 @@ public class BankAccountDAO extends TableDAO<BankAccount> {
         return super.findById(aadhar_id);
     }
     
-
 }

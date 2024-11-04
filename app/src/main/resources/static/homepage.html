@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- <meta http-equiv="refresh" content="0.001"> -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home Page - Query Bank</title>
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
@@ -19,11 +20,13 @@
                 <li><a href="#" class="nav_link">Contact</a></li>
             </ul>
             <button class="button" id="form-open">Login</button>
+            <button class="button" id="customerDetailsModal-open">Account</button>
         </nav>
     </header>
 
     <!-- Home -->
     <section class="home">
+        
         <div class="form_container">
             <i class="uil uil-times form_close"></i>
             <!-- Login Form -->
@@ -72,6 +75,11 @@
                     <button class="button" type="submit">Signup Now</button> <!-- Added type -->
                     <div class="login_signup">Already have an account? <a href="#" id="login">Login</a></div>
                 </form>
+            </div>
+        </div>
+        <div class="modal" id="customerDetails-modal">
+            <div id="modal-inner-content">
+            
             </div>
         </div>
     </section>

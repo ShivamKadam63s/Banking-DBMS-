@@ -1,61 +1,74 @@
-const formOpenBtn = document.querySelector("#form-open"),
-    home = document.querySelector(".home"),
-    formContainer = document.querySelector(".form_container"),
-    formCloseBtn = document.querySelector(".form_close"),
-    signupBtn = document.querySelector("#signup"),
-    loginBtn = document.querySelector("#login"),
-    pwShowHide = document.querySelectorAll(".pw_hide"),
-    loginForm = document.querySelector("#login-form");
+document.addEventListener('DOMContentLoaded', () => {
+    const modal = document.getElementById('loginModal');
+    const loginBtn = document.getElementById('loginBtn');
+    const closeBtn = document.querySelector('.close-btn');
+    const loginForm = document.getElementById('loginForm');
+    const signupForm = document.getElementById('signupForm');
+    const showSignupLink = document.getElementById('showSignup');
+    const showLoginLink = document.getElementById('showLogin');
+    const passwordToggles = document.querySelectorAll('.toggle-password');
+    const loginInvalid = document.getElementById('loginForm-invalid');
 
-formOpenBtn.addEventListener("click", () => home.classList.add("show"));
-formCloseBtn.addEventListener("click", () => home.classList.remove("show"));
+    // Modal controls
+    loginBtn.onclick = () => modal.style.display = 'block';
+    closeBtn.onclick = () => modal.style.display = 'none';
+    window.onclick = (e) => {
+        if (e.target === modal) {
+            modal.style.display = 'none';
+            loginInvalid.style.display = 'none';
+        }
+    }
 
-pwShowHide.forEach((icon) => {
-    icon.addEventListener("click", () => {
-        let getPwInput = icon.parentElement.querySelector("input");
-        if (getPwInput.type === "password") {
-            getPwInput.type = "text";
-            icon.classList.replace("uil-eye-slash", "uil-eye");
-        } else {
-            getPwInput.type = "password";
-            icon.classList.replace("uil-eye", "uil-eye-slash");
+    // Form switching
+    showSignupLink.onclick = (e) => {
+        e.preventDefault();
+        loginForm.classList.add('hidden');
+        signupForm.classList.remove('hidden');
+    }
+
+    showLoginLink.onclick = (e) => {
+        e.preventDefault();
+        signupForm.classList.add('hidden');
+        loginForm.classList.remove('hidden');
+    }
+
+    // Password visibility toggle
+    passwordToggles.forEach(toggle => {
+        toggle.onclick = () => {
+            const input = toggle.previousElementSibling;
+            input.type = input.type === 'password' ? 'text' : 'password';
+            toggle.classList.toggle('uil-eye');
+            toggle.classList.toggle('uil-eye-slash');
         }
     });
-});
 
-signupBtn.addEventListener("click", (e) => {
-    e.preventDefault();
-    formContainer.classList.add("active");
-});
-loginBtn.addEventListener("click", (e) => {
-    e.preventDefault();
-    formContainer.classList.remove("active");
-});
-
-// New event listener for login form submission
-loginForm.addEventListener("submit", async (e) => {
-    e.preventDefault(); // Prevent default form submission
-    const email = loginForm.querySelector("input[type='email']").value;
-    const password = loginForm.querySelector("input[type='password']").value;
-
-    try {
-        const response = await fetch('/login', {
+    // Form submissions
+    loginForm.onsubmit = async (e) => {
+        e.preventDefault();
+        const email = loginForm.querySelector('input[type="email"]').value
+        const password = loginForm.querySelector('input[type="password"]').value
+        const response = await fetch("/customer/login", {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({ email, password }),
-        });
-
-        const result = await response.json();
-
+            body: JSON.stringify({email, password}),
+        })    
         if (response.ok) {
-            window.location.href = 'homepage.html'; // Redirect to homepage
-        } else {
-            alert(result.message); // Display error message from server
+            console.log("logged in");
+            const data = await response.json();
+            sessionStorage.setItem("customerDetails", JSON.stringify(data));
+            window.location.href = '/homepage.html';
         }
-    } catch (error) {
-        console.error('Error:', error);
-        alert('An error occurred. Please try again later.');
+        else {
+            console.log("Wrong Email/Password")
+            loginInvalid.style.display = 'block';
+            //make a hidden css text down there and have this else unhide it.
+        }
+    }
+
+    signupForm.onsubmit = async (e) => {
+        e.preventDefault();
+        // Add your signup logic here
     }
 });

@@ -3,12 +3,12 @@ import java.util.*;
 import java.sql.*;
 
 public abstract class TableDAO<T> {
-    private Connection connection;
-    private String tableName;
-    private String primaryKey;
+    protected Connection connection;
+    protected String tableName;
+    protected String primaryKey;
     
-    private String[] foreignKeys;
-    private String[] columns;
+    protected String[] foreignKeys;
+    protected String[] columns;
 
     public TableDAO(
         Connection connection, 

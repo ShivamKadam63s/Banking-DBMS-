@@ -14,4 +14,12 @@ public class CustomerService {
         return customerDAO.findById(aadhar_id);
     }
 
+    public Customer findByEmailPassword(String email, String password) {
+        return customerDAO.findByEmailPassword(email, password);
+    }
+
+    public boolean authenticateEmailPassword(String email, String password) {
+        return customerDAO.findByEmailPassword(email, password) != null;
+    }
+
 }
