@@ -2,6 +2,7 @@ package com.DBMSproj.app.banktransaction;
 import com.DBMSproj.app.daotemplates.*;
 import org.springframework.stereotype.Repository;
 import java.util.*;
+import java.math.BigDecimal;
 import java.sql.*;
 @Repository
 public class BankTransactionDAO extends TableDAO<BankTransaction> {
@@ -36,5 +37,4 @@ public class BankTransactionDAO extends TableDAO<BankTransaction> {
     public List<BankTransaction> findById(Long aadhar_id){
         return super.findById(aadhar_id);
     }
-
 }

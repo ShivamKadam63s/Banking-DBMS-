@@ -125,7 +125,23 @@ footer {
     border-radius: 5px;
     position: relative;
 }
+#modal-inner-content {
+    background-color: white;
+    margin-left: 30% ;
+    margin-right: 15% ;
+    margin-top: 12% ;
+    margin-bottom: 50% ;
+    /* margin : 15% auto; */    
+    padding: 20px;
+    padding-bottom: 10px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 500px;
+    border-radius: 10px;
+    position: relative;
+    animation-name: anim;
 
+}
 #closeModal {
     position: absolute;
     right: 10px;
@@ -139,8 +155,16 @@ footer {
 }
 
 
+/* 
+#customerDetails-modal {
+    background-color:#fff;
+    max-width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
 
 
+    
+} */
 /* changes are here*/
 
 .home::before {

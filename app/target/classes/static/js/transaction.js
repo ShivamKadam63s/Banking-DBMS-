@@ -1,4 +1,11 @@
+
 document.getElementById('form-open').addEventListener('click', openProfile);
+let bankAccountDetails, acc_id1;
+try {
+bankAccountDetails = JSON.parse(sessionStorage.getItem("bankAccountDetails"))
+acc_id1 = bankAccountDetails.acc_id;
+} catch (error) {}
+console.log(acc_id1);
 
 function openProfile() {
     fetch('/profile/john_doe') // Adjust the path based on your endpoint
@@ -18,10 +25,14 @@ function openProfile() {
         console.error('Error fetching user data:', error);
     });
 }
+//^^Not doing this
+
 
 function closeProfile() {
     document.getElementById('profileModal').style.display = "none";
 }
+//^^Not doing this
+
 
 function openDeposit() {
     document.getElementById('depositModal').style.display = "block";
@@ -33,17 +44,19 @@ function closeDeposit() {
 
 function deposit() {
     const amount = parseFloat(document.getElementById('depositAmount').value);
-    fetch('/deposit', {
+    fetch('/bankaccount/deposit', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ amount })
+        body: JSON.stringify({acc_id: acc_id1 ,amount})
     })
     .then(response => response.json())
     .then(data => {
-        document.getElementById('acc_balance').textContent = data.newBalance.toFixed(2);
+        console.log(data);
+        
+        document.getElementById('acc_balance').textContent = data.acc_balance.toFixed(2);
         closeDeposit();
     })
-    .catch(error => console.error('Error depositing:', error));
+    .catch(async error => console.error(`Error depositing: `, error));
 }
 
 function openWithdraw() {
@@ -56,27 +69,36 @@ function closeWithdraw() {
 
 function withdraw() {
     const amount = parseFloat(document.getElementById('withdrawAmount').value);
-    fetch('/withdraw', {
+    fetch('/bankaccount/withdraw', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ amount })
+        body: JSON.stringify({acc_id: acc_id1 ,amount})
     })
     .then(response => response.json())
     .then(data => {
-        document.getElementById('acc_balance').textContent = data.newBalance.toFixed(2);
-        closeWithdraw();
+        console.log(data);
+        
+        document.getElementById('acc_balance').textContent = data.acc_balance.toFixed(2);
+        closeDeposit();
     })
-    .catch(error => console.error('Error withdrawing:', error));
+    .catch(async error => console.error(`Error depositing: `, error));
 }
 
 function checkBalance() {
-    fetch('/balance') // Adjust the path based on your endpoint
+    fetch(`/bankaccount/balance/${acc_id1}`) // Adjust the path based on your endpoint
     .then(response => response.json())
     .then(data => {
-        document.getElementById('currentBalance').textContent = data.balance.toFixed(2);
+        document.getElementById('currentBalance').textContent = data.acc_balance.toFixed(2);
         document.getElementById('balanceModal').style.display = "block";
     })
     .catch(error => console.error('Error fetching balance:', error));
+}
+function openBalance() {
+    document.getElementById('balanceModal').style.display = "block";
+}
+
+function closeBalance() {
+    document.getElementById('balanceModal').style.display = "none";
 }
 
 function openTransfer() {

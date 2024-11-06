@@ -11,14 +11,22 @@ document.addEventListener('DOMContentLoaded', () => {
         customerDetailsModalOpenBtn = document.getElementById("customerDetailsModal-open");
     
     customerDetailsModalOpenBtn.style.display = 'none';
-    
+    window.onclick = (e) => {
+        if (e.target === modal) {
+            modal.style.visibility = 'hidden';
+            loginInvalid.style.display = 'none';
+        }
+    }
     if (sessionStorage.getItem("customerDetails") != null) {
         formOpenBtn.style.display = 'none';
         const customer = JSON.parse(sessionStorage.getItem("customerDetails"));
         customerDetailsModalOpenBtn.style.display = 'block';
         document.getElementById('modal-inner-content').innerHTML = `
-            <p>Name: ${customer.fname + ' ' + customer.mname + ' ' + customer.lname}</p>
-            <p>Aadhar ID: ${customer.aadhar_id}</p>
+            <img src = images/profile.png></img>
+            <p><b>Name:</b> ${customer.fname + ' ' + customer.mname + ' ' + customer.lname}</p>
+            <p><b>Aadhar ID:</b> ${customer.aadhar_id}</p>
+            <p><b>Email:</b> ${customer.Email}</p>
+            <p><b>Address:</b> ${customer.address}</p>
         `;
     }
 
