@@ -22,4 +22,19 @@ public class CustomerService {
         return customerDAO.findByEmailPassword(email, password) != null;
     }
 
+    public Customer registerCustomer(
+        Long aadhar_id,
+        String mobile_no,
+        String fname,
+        String mname,
+        String lname,
+        String address,
+        Date DOB,
+        String Email,
+        String Gender,
+        String password
+    ) {
+
+        return customerDAO.createCustomer(aadhar_id, mobile_no, fname, mname, lname, address, null, Email, Gender, password);
+    }
 }

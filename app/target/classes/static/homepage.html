@@ -79,12 +79,19 @@
         </div>
         <div id="customerDetails-modal" class="modal">
 
-            <!-- Modal content -->
-            <div id="modal-inner-content">
-              <p>Some text in the Modal..</p>
+            <div class="modal-content">
+        
+                
+        
+                <div id="modal-inner-content">
+                    
+                    <!-- User details will be inserted here by JavaScript -->
+        
+                </div>
+        
             </div>
-          
-          </div>
+        
+        </div>
     </section>
 
     <div class="container">
@@ -98,7 +105,7 @@
             <div class="feature-service">
                 <h3>Loans</h3>
                 <p>Get personal, home, or auto loans tailored to your needs.</p>
-                <button class="button" onclick="window.location.href='loan.html'">Apply Now</button>
+                <button class="button" onclick="window.location.href='accounts.html'; sessionStorage.setItem('destination', 'loan.html')">Apply Now</button>
             </div>
             <div class="feature-service">
                 <h3>Investment Services</h3>

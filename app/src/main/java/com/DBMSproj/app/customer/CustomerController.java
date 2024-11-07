@@ -16,7 +16,12 @@ import java.util.*;
 @RestController
 @RequestMapping("/customer")
 public class CustomerController {
-    
+    private final CustomerService service;
+
+    public CustomerController(CustomerService service) {
+        this.service = service;
+    }
+
     @GetMapping("/{aadhar_id}")
     public List<Customer> getCustomer(@PathVariable Long aadhar_id) {
         List<Customer> resultSet = new ArrayList<>();
@@ -47,6 +52,25 @@ public class CustomerController {
         }
     }
 
+    @PostMapping("/register")
+    public ResponseEntity<Customer> register(@RequestBody Customer customer) {
+        try {
+            Long aadhar_id = customer.aadhar_id();
+            String mobile_no = customer.mobile_no();
+            String fname = customer.fname();
+            String mname = customer.mname();
+            String lname = customer.lname();
+            String address = customer.address();
+            Date DOB = customer.DOB();
+            String Email = customer.Email();
+            String Gender = customer.Gender();
+            String password = customer.password();
+
+            return ResponseEntity.ok(service.registerCustomer(aadhar_id, mobile_no, fname, mname, lname, address, DOB, Email, Gender, password));
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+        }
+    }
 }
 
 record EmailPassword(String email, String password) {}

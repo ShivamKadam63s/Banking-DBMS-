@@ -75,9 +75,9 @@ function withdraw() {
         body: JSON.stringify({acc_id: acc_id1 ,amount})
     })
     .then(response => response.json())
-    .then(data => {
+    .then(async data => {
         console.log(data);
-        
+        data = await fetch(`/bankaccount/${acc_id1}`).then(response => response.json())
         document.getElementById('acc_balance').textContent = data.acc_balance.toFixed(2);
         closeDeposit();
     })
@@ -112,21 +112,26 @@ function closeTransfer() {
 function transfer() {
     const accId = document.getElementById('transferAccId').value;
     const amount = parseFloat(document.getElementById('transferAmount').value);
-    fetch('/transfer', {
+    const type = "deposit";
+   
+    
+    fetch('/bankaccount/transaction', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ accId, amount })
-    })
-    .then(response => response.json())
-    .then(data => {
-        document.getElementById('acc_balance').textContent = data.newBalance.toFixed(2);
+        body: JSON.stringify({"acc_id": acc_id1, "Reciever_acc":accId, "Amount": amount, "transaction_type": type})
+    }).then(response => response.json())
+    .then(async data => {
+        data2 = await fetch(`/bankaccount/${acc_id1}`).then(response => response.json())
+        document.getElementById('acc_balance').textContent = data2.acc_balance.toFixed(2);
+        console.log("these 2: "+JSON.stringify(data), data2);
+        
         closeTransfer();
     })
     .catch(error => console.error('Error transferring:', error));
 }
 
 function viewTransactions() {
-    fetch('/transactions') // Adjust the path based on your endpoint
+    fetch('/banktransaction') // Adjust the path based on your endpoint
     .then(response => response.json())
     .then(data => {
         const historyContainer = document.getElementById('transactionHistory');

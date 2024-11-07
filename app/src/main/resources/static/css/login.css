@@ -38,6 +38,10 @@
     text-decoration: none;
     margin: 0 1rem;
     cursor: pointer;
+    background-color: lightslategrey;
+}
+#loginBtn:hover {
+    background-color: slategrey;
 }
 /* Modal Styles */
 .modal {

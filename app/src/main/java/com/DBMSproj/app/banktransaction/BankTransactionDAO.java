@@ -1,9 +1,11 @@
 package com.DBMSproj.app.banktransaction;
+import com.DBMSproj.app.bankaccount.*;
 import com.DBMSproj.app.daotemplates.*;
 import org.springframework.stereotype.Repository;
 import java.util.*;
 import java.math.BigDecimal;
 import java.sql.*;
+import java.sql.Date;
 @Repository
 public class BankTransactionDAO extends TableDAO<BankTransaction> {
     public BankTransactionDAO() throws SQLException{
@@ -37,4 +39,48 @@ public class BankTransactionDAO extends TableDAO<BankTransaction> {
     public List<BankTransaction> findById(Long aadhar_id){
         return super.findById(aadhar_id);
     }
+    
+    public BankTransaction createBankTransaction( //this fucking sucks
+    Long Reciever_acc,
+    Date transaction_date,
+    String transaction_type,
+    BigDecimal Amount,
+    Long acc_id) {
+        Long transactionId = 0l;
+        String username = "";
+        String sql1 = "Select username from BankAccount where acc_id = ?";
+            try {
+                PreparedStatement stmnt = connection.prepareStatement(sql1);
+                stmnt.setLong(1, acc_id);
+                ResultSet rS = stmnt.executeQuery();
+                rS.next();
+                BankAccount bA = BankAccountDAO.staticMapResultSetToEntity(rS);
+                username = bA.username();
+            } catch (Exception e) {
+                // handle exception
+            }
+        int attempts = 0;
+        while (attempts < 100) {
+            try {
+                transactionId = new Random().nextLong(10000l);
+                String sql2 = "Insert into BankTransaction value(?, ?, ?, ?, ?, ?, ?);";
+                
+                PreparedStatement stmnt = connection.prepareStatement(sql2);
+                stmnt.setLong(1, transactionId);
+                stmnt.setString(2, username);
+                stmnt.setLong(3, Reciever_acc);
+                stmnt.setDate(4, transaction_date);
+                stmnt.setString(5, transaction_type);
+                stmnt.setBigDecimal(6, Amount);
+                stmnt.setLong(7, acc_id);
+                stmnt.executeUpdate();
+                break;
+            } catch (Exception e) {
+                attempts++;
+            }
+        }
+        return findById(Long.valueOf(transactionId)).get(0);
+    }
+    
+    Connection getConnection() {return connection;}
 }

@@ -10,6 +10,7 @@ public record Customer(
     String address,
     Date DOB,
     String Email,
-    String Gender
+    String Gender,
+    String password
 ) {
 }

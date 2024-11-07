@@ -22,8 +22,8 @@ document.addEventListener('DOMContentLoaded', () => {
     // Form switching
     showSignupLink.onclick = (e) => {
         e.preventDefault();
-        loginForm.classList.add('hidden');
-        signupForm.classList.remove('hidden');
+        window.location.href = "form.html"
+        
     }
 
     showLoginLink.onclick = (e) => {

@@ -21,7 +21,8 @@ public class CustomerDAO extends TableDAO<Customer> {
                 "address",
                 "DOB",
                 "Email",
-                "Gender"}
+                "Gender",
+                "password"}
             );
     }
     public Customer mapResultSetToEntity(ResultSet rs) throws SQLException {
@@ -34,7 +35,8 @@ public class CustomerDAO extends TableDAO<Customer> {
             rs.getString("address"),
             rs.getDate("DOB"),
             rs.getString("Email"),
-            rs.getString("Gender")
+            rs.getString("Gender"),
+            rs.getString("password")
         );
         return customer;
     }
@@ -57,4 +59,36 @@ public class CustomerDAO extends TableDAO<Customer> {
     // public List<Customer> findById(Long aadhar_id){
     //     return super.findById(aadhar_id);
     // }
+
+    public Customer createCustomer(
+        Long aadhar_id,
+        String mobile_no,
+        String fname,
+        String mname,
+        String lname,
+        String address,
+        Date DOB,
+        String Email,
+        String Gender,
+        String password) {
+            
+            String sql = "Insert into Customer value (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            try (PreparedStatement stmnt = connection.prepareStatement(sql)) {
+                stmnt.setLong(1, aadhar_id);
+                stmnt.setString(2, mobile_no);
+                stmnt.setString(3, fname);
+                stmnt.setString(4, mname);
+                stmnt.setString(5, lname);
+                stmnt.setString(6, address);
+                stmnt.setDate(7, DOB);
+                stmnt.setString(8, Email);
+                stmnt.setString(9, Gender);
+                stmnt.setString(10, password);
+
+                stmnt.executeUpdate();
+                return findById(aadhar_id).get(0);
+            } catch (Exception e) {
+                return new Customer(null, null, null, null, null, null, null, null, null, null);
+            }
+    }
 }

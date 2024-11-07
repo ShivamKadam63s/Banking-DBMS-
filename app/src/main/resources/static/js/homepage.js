@@ -21,9 +21,11 @@ document.addEventListener('DOMContentLoaded', () => {
         formOpenBtn.style.display = 'none';
         const customer = JSON.parse(sessionStorage.getItem("customerDetails"));
         customerDetailsModalOpenBtn.style.display = 'block';
+        let nullsafe = (str) => str == null ? "" : str; 
         document.getElementById('modal-inner-content').innerHTML = `
+            <span class="close">&times;</span>
             <img src = images/profile.png></img>
-            <p><b>Name:</b> ${customer.fname + ' ' + customer.mname + ' ' + customer.lname}</p>
+            <p><b>Name:</b> ${nullsafe(customer.fname) + ' ' + nullsafe(customer.mname) + ' ' + nullsafe(customer.lname)}</p>
             <p><b>Aadhar ID:</b> ${customer.aadhar_id}</p>
             <p><b>Email:</b> ${customer.Email}</p>
             <p><b>Address:</b> ${customer.address}</p>
@@ -92,16 +94,27 @@ document.addEventListener('DOMContentLoaded', () => {
         customerDetailsModal.style.visibility = 'visible'; // Add this line
     
     }
-    customerDetailsModal.querySelector('.modal-content').innerHTML += `
-
-    <button id="closeModal">Close</button>
-
-    `;
 
 
-    document.getElementById('closeModal').onclick = () => {
+    const modal = document.getElementById('customerDetails-modal');
 
-        customerDetailsModal.style.display = 'none';
+    const closeBtn = modal.querySelector('.close');
+
+
+    closeBtn.onclick = function() {
+
+        modal.style.display = "none";
+
+    }
+
+
+    window.onclick = function(event) {
+
+        if (event.target == modal) {
+
+            modal.style.display = "none";
+
+        }
 
     }
 });

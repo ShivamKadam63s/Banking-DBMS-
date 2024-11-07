@@ -34,6 +34,18 @@ public class BankAccountDAO extends TableDAO<BankAccount> {
         );
         return BankAccount;
     }
+    public static BankAccount staticMapResultSetToEntity(ResultSet rs) throws SQLException {
+        BankAccount BankAccount = new BankAccount(
+            rs.getLong("acc_id"),
+            rs.getString("pass"),
+            rs.getString("username"),
+            rs.getBigDecimal("acc_balance"),
+            rs.getBigDecimal("transaction_limit"),
+            rs.getString("acc_type"),
+            rs.getLong("aadhar_id")
+        );
+        return BankAccount;
+    }
     public List<BankAccount> findById(Long aadhar_id){
         return super.findById(aadhar_id);
     }

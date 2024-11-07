@@ -10,5 +10,4 @@ public record Loan(
     Long customer_id
 ) {
     
-
 }

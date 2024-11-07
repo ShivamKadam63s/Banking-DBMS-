@@ -8,6 +8,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 // import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import com.DBMSproj.app.shared.*;
+
+
+import com.DBMSproj.app.banktransaction.*;
 
 import java.math.BigDecimal;
 import java.util.*;
@@ -48,8 +52,27 @@ public class BankAccountController {
         BigDecimal amount = accIdAmount.amount();
         return ResponseEntity.ok(service.withdraw(acc_id, amount));
     }
+    @PostMapping("/transaction")
+    public ResponseEntity<BankTransaction> transaction(@RequestBody AccId_RecieverAcc_Amount_TransactionType req) {
+        Long acc_id = req.acc_id();
+        Long Reciever_acc = req.Reciever_acc();
+        BigDecimal Amount = req.Amount();
+        String transaction_type = req.transaction_type();
+        try {
+            return (new BankTransactionController(new BankTransactionService(new BankTransactionDAO())).createBankTransaction(new Reciever_acctransaction_typeAmountacc_id(Reciever_acc, transaction_type, Amount, acc_id)));
+        } catch (Exception e) {
+            return ResponseEntity.ok(new BankTransaction(null, null, null, null, null, null, null));
+        }
+
+    }
 }
 
 
 record AccIdAmount(Long acc_id, BigDecimal amount) {}
+record AccId_RecieverAcc_Amount_TransactionType(
+    Long acc_id,
+    Long Reciever_acc,
+    BigDecimal Amount,
+    String transaction_type
+) { }
 
