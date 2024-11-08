@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- <meta http-equiv="refresh" content="0.001"> -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Page - Query Bank</title>
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+    <link rel="stylesheet" href="css/homepage.css">
+    <link rel="stylesheet" href="css/bg.css">
+</head>
+<body>
+    <header>
+        <nav class="nav">
+            <a href="#" class="nav_logo">Query Bank</a>
+            <ul class="nav_item">
+                <li><a href="homepage.html" class="nav_link">Home</a></li>
+                <li><a href="#" class="nav_link">Products</a></li>
+                <li><a href="#" class="nav_link">Services</a></li>
+                <li><a href="#" class="nav_link">Contact</a></li>
+            </ul>
+            <button class="button" id="form-open">Login</button>
+            <button class="button" id="customerDetailsModal-open">Account</button>
+        </nav>
+    </header>
+
+    <!-- Home -->
+    <section class="home">
+        
+        <div class="form_container">
+            <i class="uil uil-times form_close"></i>
+            <!-- Login Form -->
+            <div class="form login_form">
+                <form action="form.html" method="POST"> <!-- Added method -->
+                    <h2>Login</h2>
+                    <div class="input_box">
+                        <input type="email" placeholder="Enter your email" required />
+                        <i class="uil uil-envelope-alt email"></i>
+                    </div>
+                    <div class="input_box">
+                        <input type="password" placeholder="Enter your password" required />
+                        <i class="uil uil-lock password"></i>
+                        <i class="uil uil-eye-slash pw_hide"></i>
+                    </div>
+                    <div class="option_field">
+                        <span class="checkbox">
+                            <input type="checkbox" id="check" />
+                            <label for="check">Remember me</label>
+                        </span>
+                        <a href="#" class="forgot_pw">Forgot password?</a>
+                    </div>
+                    <button class="button" type="submit">Login Now</button> <!-- Added type -->
+                    <div class="login_signup">Don't have an account? <a href="#" id="signup">Signup</a></div>
+                </form>
+            </div>
+
+            <!-- Signup Form -->
+            <div class="form signup_form">
+                <form action="#" method="POST"> <!-- Added method -->
+                    <h2>Signup</h2>
+                    <div class="input_box">
+                        <input type="email" placeholder="Enter your email" required />
+                        <i class="uil uil-envelope-alt email"></i>
+                    </div>
+                    <div class="input_box">
+                        <input type="password" placeholder="Create password" required />
+                        <i class="uil uil-lock password"></i>
+                        <i class="uil uil-eye-slash pw_hide"></i>
+                    </div>
+                    <div class="input_box">
+                        <input type="password" placeholder="Confirm password" required />
+                        <i class="uil uil-lock password"></i>
+                        <i class="uil uil-eye-slash pw_hide"></i>
+                    </div>
+                    <button class="button" type="submit">Signup Now</button> <!-- Added type -->
+                    <div class="login_signup">Already have an account? <a href="#" id="login">Login</a></div>
+                </form>
+            </div>
+        </div>
+        <div id="customerDetails-modal" class="modal">
+
+            <div class="modal-content">
+        
+                
+        
+                <div id="modal-inner-content">
+                    
+                    <!-- User details will be inserted here by JavaScript -->
+        
+                </div>
+        
+            </div>
+        
+        </div>
+    </section>
+
+    <div class="container">
+        <h2>Our Features & Services</h2>
+        <div class="features-services">
+            <div class="feature-service">
+                <h3>Online Banking</h3>
+                <p>Manage your accounts, view statements, and transfer money online.</p>
+                <button class="button" onclick="window.location.href='accounts.html'; sessionStorage.setItem('destination', 'transaction.html')">Learn More</button>
+            </div>
+            <div class="feature-service">
+                <h3>Loans</h3>
+                <p>Get personal, home, or auto loans tailored to your needs.</p>
+                <button class="button" onclick="window.location.href='accounts.html'; sessionStorage.setItem('destination', 'loan.html')">Apply Now</button>
+            </div>
+            <div class="feature-service">
+                <h3>Investment Services</h3>
+                <p>Grow your wealth with our expert investment strategies.</p>
+                <button class="button" onclick="window.location.href='investment.html'">Get Started</button>
+            </div>
+            <div class="feature-service">
+                <h3>Credit Cards</h3>
+                <p>Flexible credit options with great rewards.</p>
+                <button class="button" onclick="window.location.href='creditcards.html'">View Options</button>
+            </div>
+            <div class="feature-service">
+                <h3>Customer Support</h3>
+                <p>We're here to help you 24/7 with any questions.</p>
+                <button class="button" onclick="window.location.href='support.html'">Contact Us</button>
+            </div>
+            <div class="feature-service">
+                <h3>Financial Planning</h3>
+                <p>Get expert advice on managing your finances effectively.</p>
+                <button class="button" onclick="window.location.href='financialplanning.html'">Start Planning</button>
+            </div>
+        </div>
+    
+        <h2>Featured Offers & Promotions</h2>
+        <div class="features-services">
+            <div class="feature-service">
+                <h3>Limited-Time Offer: 0% Interest on New Loans</h3>
+                <p>Take advantage of our special 0% interest rate on new personal loans for the first 6 months. Don’t miss out!</p>
+                <button class="button">Claim Offer</button>
+            </div>
+            <div class="feature-service">
+                <h3>Refer a Friend & Earn Rewards</h3>
+                <p>Refer a friend to our bank and earn bonus rewards for each successful referral!</p>
+                <button class="button">Refer Now</button>
+            </div>
+        </div>
+    
+        <h2>Financial Education</h2>
+        <div class="features-services">
+            <div class="feature-service">
+                <h3>Budgeting Basics</h3>
+                <p>Learn how to create a budget that works for you with our easy-to-follow guide.</p>
+                <button class="button">Read More</button>
+            </div>
+            <div class="feature-service">
+                <h3>Investment Strategies</h3>
+                <p>Explore different investment strategies to grow your savings effectively.</p>
+                <button class="button">Get Tips</button>
+            </div>
+        </div>
+    
+        <h2>Security Information</h2>
+        <div class="features-services">
+            <div class="feature-service">
+                <h3>Your Security is Our Priority</h3>
+                <p>Discover how we protect your data with advanced security measures and protocols.</p>
+                <button class="button">Learn More</button>
+            </div>
+        </div>
+    
+    </div>
+    
+
+    <div class="container">
+        <h2>Latest News & Updates</h2>
+        <p>Stay in the loop with our exciting new offers and services!</p>
+        
+        <div class="latest-news">
+            <div class="news-item">
+                <h3>🌟 Exciting New Features Coming Soon!</h3>
+                <p>Get ready for a revamped online banking experience with personalized dashboards and enhanced security features!</p>
+                <button class="button">Learn More</button>
+            </div>
+            
+            <div class="news-item">
+                <h3>📈 Special Interest Rates for New Loans!</h3>
+                <p>Unlock our exclusive limited-time offer with interest rates as low as 2.5% on personal loans!</p>
+                <button class="button">Apply Now</button>
+            </div>
+            
+            <div class="news-item">
+                <h3>💼 Free Investment Consultations This Month!</h3>
+                <p>Schedule your free consultation with our financial advisors to get personalized investment advice!</p>
+                <button class="button">Book Now</button>
+            </div>
+            
+            <div class="news-item">
+                <h3>🎉 Get Rewards on Every Purchase with Our New Credit Card!</h3>
+                <p>Sign up for our new credit card and earn 1.5% cash back on all purchases—plus a welcome bonus!</p>
+                <button class="button">Sign Up Today</button>
+            </div>
+            
+            <div class="news-item">
+                <h3>🌍 Going Green: Eco-Friendly Banking Solutions!</h3>
+                <p>Join us in our commitment to sustainability with our new green banking initiatives and paperless statements!</p>
+                <button class="button">Discover More</button>
+            </div>
+            
+            <div class="news-item">
+                <h3>🛡️ Enhanced Security Features Launched!</h3>
+                <p>Our new multi-factor authentication is here to keep your account even more secure. Update your settings today!</p>
+                <button class="button">Update Now</button>
+            </div>
+        </div>
+    </div>
+    
+  
+
+    <script src = "js/homepage.js"></script>
+    
+</body>
+</html>

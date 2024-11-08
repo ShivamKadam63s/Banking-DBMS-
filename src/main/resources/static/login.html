@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <meta http-equiv="refresh" content="0.001"> -->
+    <title>Login Portal</title>
+    <link rel="stylesheet" href="css/login.css">
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+    <link rel = "icon" type = "image/png" href = "images/favicon.png">
+    <link rel = "stylesheet" href ="css/bg.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+</head>
+<body>
+    
+    <nav class="navbar">
+        <a href = "homepage.html" class="nav-brand">Query Bank</a>
+        <div class="nav-links">
+            <a href="homepage.html">Home</a>
+            <a href="/products">Products</a>
+            <a href="/services">Services</a>
+            <a href="/contact">Contact</a>
+        </div>
+        <button id="loginBtn">Login</button>
+    </nav>
+
+    <div class="modal" id="loginModal">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            
+            <!-- Login Form -->
+            <form id="loginForm" class="auth-form">
+                <h2>Login</h2>
+                <div class="input-group">
+                    <input type="email" placeholder="Email" required>
+                    <i class="uil uil-envelope-alt"></i>
+                </div>
+                <div class="input-group">
+                    <input type="password" placeholder="Password" required>
+                    <i class="uil uil-lock"></i>
+                    <i class="uil uil-eye-slash toggle-password"></i>
+                </div>
+                <p id="loginForm-invalid">Invalid Email/ Password!</p>
+                <div class="form-options">
+                    <label>
+                        <input type="checkbox"> Remember me
+                    </label>
+                    <a href="/forgot-password">Forgot password?</a>
+                </div>
+                <button type="submit">Login</button>
+                <p>Need an account? <a href="form.html" id="showSignup">Sign up</a></p>
+            </form>
+
+            <!-- Signup Form -->
+            <form id="signupForm" class="auth-form hidden">
+                <h2>Sign Up</h2>
+                <div class="input-group">
+                    <input type="email" placeholder="Email" required>
+                    <i class="uil uil-envelope-alt"></i>
+                </div>
+                <div class="input-group">
+                    <input type="password" placeholder="Password" required>
+                    <i class="uil uil-lock"></i>
+                    <i class="uil uil-eye-slash toggle-password"></i>
+                </div>
+                <div class="input-group">
+                    <input type="password" placeholder="Confirm Password" required>
+                    <i class="uil uil-lock"></i>
+                    <i class="uil uil-eye-slash toggle-password"></i>
+                </div>
+                <button type="submit">Sign Up</button>
+                
+                <p>Already have an account? <a href="#" id="showLogin">Login</a></p>
+            </form>
+        </div>
+    </div>
+    <footer>
+        <p>&copy; 2024 Query Bank. All rights reserved.</p>
+    </footer>
+    <!-- <img src = "images/bankbackground.jpeg" width =  100%, height = auto></img> -->
+    <script src="js/login.js"></script>
+</body>
+</html>

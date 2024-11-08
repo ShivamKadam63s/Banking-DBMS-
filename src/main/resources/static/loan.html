@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loan Portal</title>
+    <link rel="stylesheet" href="css/loan.css">
+    <link rel="stylesheet" href="css/bg.css">
+</head>
+<body>
+    <header class="header">
+        <nav class="nav">
+            <a href="login.html" class="nav_logo">Query Bank</a>
+            <ul class="nav_items">
+                <li class="nav_item">
+                    <a href="homepage.html" class="nav_link">Home</a>
+                    <a href="#" class="nav_link">Products</a>
+                    <a href="#" class="nav_link">Services</a>
+                    <a href="#" class="nav_link">Contact</a>
+                </li>
+            </ul>
+            <button class="button" id="form-open">Profile</button>
+        </nav>
+    </header>
+    <div id="balanceModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeBalance()">&times;</span>
+            <h2>Account Balance</h2>
+            <p>Current Balance: $<span id="currentBalance">0.00</span></p>
+        </div>
+    </div>
+    <div class="container">
+        <h1>Welcome to Your Online Banking Portal!</h1>
+        <div class="balance">
+            <h2>Account Balance: <span id="balance"></span></h2>
+            <button class="form-button" id="checkBalance">Check Balance</button>
+        </div>
+        <h1>Available Loans</h1>
+        <div class="loan-section" id="loanSection">
+            <div class="loan-box" onclick="openLoanCalculator('home')">
+                <div class="loan-type">Home Loan</div>
+            </div>
+            <div class="loan-box" onclick="openLoanCalculator('auto')">
+                <div class="loan-type">Auto Loan</div>
+            </div>
+            <div class="loan-box" onclick="openLoanCalculator('personal')">
+                <div class="loan-type">Personal Loan</div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <h1>Operations</h1>
+        <div class="loan-section" id="loanSection">
+            <div class="loan-box" onclick="openLoanForecastModal()">
+                <div class="loan-type">Credit Forecast</div>
+            </div>
+            <div class="loan-box" onclick="openObtainLoanModal()">
+                <div class="loan-type">Obtain Loan Now</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Credit Forecast Modal -->
+    <div class="modal" id="creditForecastModal">
+        <div class="modal-content">
+            <span class="close" id="closeForecastModal">&times;</span>
+            <h2>Credit Forecast</h2>
+            <form id="forecastForm" class="loan-form">
+                <input type="number" id="forecastAmount" placeholder="Loan Amount" required>
+                <input type="number" id="forecastDuration" placeholder="Duration (Months)" required>
+                <div class="loan-radio">
+                    <label><input type="radio" name="loanType" value="personal"> Personal Loan</label>
+                    <label><input type="radio" name="loanType" value="home"> Home Loan</label>
+                    <label><input type="radio" name="loanType" value="auto"> Auto Loan</label>
+                </div>
+                <button type="submit" class="form-button">Submit</button>
+            </form>
+            <div class="notification" id="forecastNotification"></div>
+        </div>
+    </div>
+
+    <!-- Obtain Loan Now Modal -->
+    <div class="modal" id="obtainLoanModal">
+        <div class="modal-content">
+            <span class="close" id="closeObtainLoanModal">&times;</span>
+            <h2>Obtain Loan Now</h2>
+            <form id="obtainLoanForm" class="loan-form">
+                <input type="number" id="obtainAmount" placeholder="Loan Amount" required>
+                <input type="number" id="obtainDuration" placeholder="Duration (Months)" required>
+                <div class="loan-radio">
+                    <label><input type="radio" name="obtainLoanType" value="personal"> Personal Loan</label>
+                    <label><input type="radio" name="obtainLoanType" value="home"> Home Loan</label>
+                    <label><input type="radio" name="obtainLoanType" value="auto"> Auto Loan</label>
+                </div>
+                <button type="submit" class="form-button">Submit</button>
+            </form>
+            <div class="notification" id="obtainNotification"></div>
+        </div>
+    </div>
+    <script src="js/loan.js"></script>
+</body>
+</html>
