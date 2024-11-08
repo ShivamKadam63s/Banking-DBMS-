@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const showLoginLink = document.getElementById('showLogin');
     const passwordToggles = document.querySelectorAll('.toggle-password');
     const loginInvalid = document.getElementById('loginForm-invalid');
-
+    const rememberMe = document.getElementById('rememberMe');
     // Modal controls
     loginBtn.onclick = () => modal.style.display = 'block';
     closeBtn.onclick = () => modal.style.display = 'none';
@@ -23,7 +23,6 @@ document.addEventListener('DOMContentLoaded', () => {
     showSignupLink.onclick = (e) => {
         e.preventDefault();
         window.location.href = "form.html"
-        
     }
 
     showLoginLink.onclick = (e) => {
@@ -58,6 +57,9 @@ document.addEventListener('DOMContentLoaded', () => {
             console.log("logged in");
             const data = await response.json();
             sessionStorage.setItem("customerDetails", JSON.stringify(data));
+            if (rememberMe.ariaChecked) {
+                localStorage.setItem("customerDetails", JSON.stringify(data));
+            }
             window.location.href = '/homepage.html';
         }
         else {

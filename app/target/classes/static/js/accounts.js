@@ -30,7 +30,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 let bankAccount = JSON.stringify(data);
                 sessionStorage.setItem("bankAccountDetails",bankAccount);
                 destination = sessionStorage.getItem("destination");
-                sessionStorage.removeItem("destination");
+                // sessionStorage.removeItem("destination"); caused errors when user did return back
                 window.location.href = destination;}
             
             

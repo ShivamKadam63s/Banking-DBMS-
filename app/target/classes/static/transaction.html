@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Online Banking</title>
     <link rel="stylesheet" href="css/transaction.css">
+    <link rel="stylesheet" href="css/bg.css">
 </head>
 <body>
     <header class="header">
@@ -107,13 +108,15 @@
 
     <!-- Transaction History Modal -->
     <div id="transactionModal" class="modal">
-        <div class="modal-content">
+        <div class="modal-content" id="transactionModalContent">
             <span class="close" onclick="closeTransactions()">&times;</span>
             <h2>Transaction History</h2>
             <div id="transactionHistory"></div>
         </div>
     </div>
-
+    <footer>
+        <p>&copy; 2024 Query Bank. All rights reserved.</p>
+    </footer>
     <script src="js/transaction.js"></script>
 </body>
 </html>

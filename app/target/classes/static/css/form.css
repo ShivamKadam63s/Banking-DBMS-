@@ -4,6 +4,9 @@ body {
     color: #333;
     margin: 0;
     padding: 20px;
+    background-image: url("../../images/bankbackground.jpeg");
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 .form-container {

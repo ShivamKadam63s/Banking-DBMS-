@@ -112,8 +112,9 @@ function closeTransfer() {
 function transfer() {
     const accId = document.getElementById('transferAccId').value;
     const amount = parseFloat(document.getElementById('transferAmount').value);
-    const type = "deposit";
+    const type = "transfer";
    
+    console.log({"acc_id": acc_id1, "Reciever_acc":accId, "Amount": amount, "transaction_type": type});
     
     fetch('/bankaccount/transaction', {
         method: 'POST',
@@ -131,14 +132,16 @@ function transfer() {
 }
 
 function viewTransactions() {
-    fetch('/banktransaction') // Adjust the path based on your endpoint
+    fetch('/banktransaction/bankaccount/'+acc_id1)
     .then(response => response.json())
     .then(data => {
         const historyContainer = document.getElementById('transactionHistory');
         historyContainer.innerHTML = '';
-        data.transactions.forEach(transaction => {
+        console.log(data);
+        
+        data.forEach(transaction => {
             const transactionItem = document.createElement('p');
-            transactionItem.textContent = `${transaction.type}: $${transaction.amount}`;
+            transactionItem.textContent = `${transaction.transaction_date}>> ${transaction.transaction_type}:    ${transaction.Amount} to ${transaction.Reciever_name}`;
             historyContainer.appendChild(transactionItem);
         });
         document.getElementById('transactionModal').style.display = "block";

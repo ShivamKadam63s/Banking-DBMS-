@@ -7,9 +7,12 @@
     <title>Login Portal</title>
     <link rel="stylesheet" href="css/login.css">
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+    <link rel = "icon" type = "image/png" href = "images/favicon.png">
+    <link rel = "stylesheet" href ="css/bg.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 </head>
 <body>
+    
     <nav class="navbar">
         <a href = "homepage.html" class="nav-brand">Query Bank</a>
         <div class="nav-links">
@@ -40,7 +43,7 @@
                 <p id="loginForm-invalid">Invalid Email/ Password!</p>
                 <div class="form-options">
                     <label>
-                        <input type="checkbox"> Remember me
+                        <input type="checkbox" id = "rememberMe"> Remember me
                     </label>
                     <a href="/forgot-password">Forgot password?</a>
                 </div>
@@ -71,7 +74,10 @@
             </form>
         </div>
     </div>
-
+    <footer>
+        <p>&copy; 2024 Query Bank. All rights reserved.</p>
+    </footer>
+    <!-- <img src = "images/bankbackground.jpeg" width =  100%, height = auto></img> -->
     <script src="js/login.js"></script>
 </body>
 </html>

@@ -8,6 +8,7 @@
     <title>Home Page - Query Bank</title>
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
     <link rel="stylesheet" href="css/homepage.css">
+    <link rel="stylesheet" href="css/bg.css">
 </head>
 <body>
     <header>
@@ -29,9 +30,9 @@
         
         <div class="form_container">
             <i class="uil uil-times form_close"></i>
-            <!-- Login Form -->
-            <div class="form login_form">
-                <form action="form.html" method="POST"> <!-- Added method -->
+             Login Form
+            <div class="form login_form" display = "none">
+                <form action="form.html" method="POST"> Added method 
                     <h2>Login</h2>
                     <div class="input_box">
                         <input type="email" placeholder="Enter your email" required />
@@ -49,14 +50,14 @@
                         </span>
                         <a href="#" class="forgot_pw">Forgot password?</a>
                     </div>
-                    <button class="button" type="submit">Login Now</button> <!-- Added type -->
+                    <button class="button" type="submit">Login Now</button> 
                     <div class="login_signup">Don't have an account? <a href="#" id="signup">Signup</a></div>
                 </form>
             </div>
 
-            <!-- Signup Form -->
-            <div class="form signup_form">
-                <form action="#" method="POST"> <!-- Added method -->
+            
+            <div class="form signup_form" display="none">
+                <form action="#" method="POST"> 
                     <h2>Signup</h2>
                     <div class="input_box">
                         <input type="email" placeholder="Enter your email" required />
@@ -72,7 +73,7 @@
                         <i class="uil uil-lock password"></i>
                         <i class="uil uil-eye-slash pw_hide"></i>
                     </div>
-                    <button class="button" type="submit">Signup Now</button> <!-- Added type -->
+                    <button class="button" type="submit">Signup Now</button> 
                     <div class="login_signup">Already have an account? <a href="#" id="login">Login</a></div>
                 </form>
             </div>
@@ -81,11 +82,8 @@
 
             <div class="modal-content">
         
-                
-        
+
                 <div id="modal-inner-content">
-                    
-                    <!-- User details will be inserted here by JavaScript -->
         
                 </div>
         
@@ -212,9 +210,7 @@
         </div>
     </div>
     
-    <footer>
-        <p>&copy; 2024 Query Bank. All rights reserved.</p>
-    </footer>
+  
 
     <script src = "js/homepage.js"></script>
     
