@@ -57,7 +57,7 @@ public class LoanController {
         String loanType = req.loanType();
         if (interest_type.get(_SQL_loan_type_col_names_.get(loanType)).equals("simple")) {
             BigDecimal finalAmount = amount.multiply(BigDecimal.valueOf(duration))
-                                            .multiply(BigDecimal.valueOf(rates.get(loanType)).add(BigDecimal.valueOf(1)));
+                                            .multiply(BigDecimal.valueOf(rates.get(_SQL_loan_type_col_names_.get(loanType))).add(BigDecimal.valueOf(1)));
             BigDecimal ROI = (finalAmount.subtract(amount)).divide(amount);
             //Note: for compound it makes sense, but for simple should we just return the interest_type stored interest
             return ResponseEntity.ok(new FinalAmountROI(finalAmount, ROI));
