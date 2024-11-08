@@ -32,7 +32,7 @@ document.addEventListener('DOMContentLoaded', () => {
         `;
     }
 
-    formOpenBtn.addEventListener("click", () => home.classList.add("show"));
+    formOpenBtn.addEventListener("click", () => window.location.href = "login.html");
     formCloseBtn.addEventListener("click", () => home.classList.remove("show"));
 
     pwShowHide.forEach((icon) => {
