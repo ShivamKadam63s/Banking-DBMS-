@@ -33,6 +33,17 @@ public class BankTransactionController {
         } catch (Exception e) {}
         return resultSet;
     }
+
+    @GetMapping("/bankaccount/{acc_id}")
+    public List<BankTransaction> getBankTransactionforBankAccount(@PathVariable Long acc_id) {
+        List<BankTransaction> resultSet = new ArrayList<>();
+        try {
+            BankTransactionService service = new BankTransactionService(new BankTransactionDAO());
+            resultSet = service.getBankTransactionforBankAccount(acc_id);
+        } catch (Exception e) {}
+        return resultSet;
+    }
+
     @PostMapping("/add")
     public ResponseEntity<BankTransaction> createBankTransaction(@RequestBody Reciever_acctransaction_typeAmountacc_id req) {
         

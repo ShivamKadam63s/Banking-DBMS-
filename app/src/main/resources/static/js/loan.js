@@ -1,3 +1,6 @@
+acc_id1 = JSON.parse(sessionStorage.getItem("bankAccountDetails")).acc_id;
+customerId = JSON.parse(sessionStorage.getItem("customerDetails")).aadhar_id;
+sessionStorage.set
 document.getElementById("form-open").onclick = function() {
     openProfile(); // Fetch and display the profile data
 };
@@ -47,19 +50,17 @@ function openProfile() {
 }
 
 function fetchBalance() {
-    fetch('/api/balance') // Adjust the path based on your endpoint
-    .then(response => {
-        if (!response.ok) {
-            throw new Error('Network response was not ok ' + response.statusText);
-        }
-        return response.json();
-    })
+    fetch(`/bankaccount/balance/${acc_id1}`) // Adjust the path based on your endpoint
+    .then(response => response.json())
     .then(data => {
-        document.getElementById("balance").textContent = data.balance.toFixed(2);
+        console.log(data)
+        document.getElementById('currentBalance').textContent = data.acc_balance.toFixed(2);
+        document.getElementById('balanceModal').style.display = "block";
     })
-    .catch(error => {
-        console.error('Error fetching balance:', error);
-    });
+    .catch(error => console.error('Error fetching balance:', error));
+}
+function closeBalance() {
+    document.getElementById('balanceModal').style.display = "none";
 }
 
 function openLoanForecastModal() {
@@ -75,9 +76,9 @@ document.getElementById("forecastForm").onsubmit = function(event) {
     const amount = parseFloat(document.getElementById("forecastAmount").value);
     const duration = parseInt(document.getElementById("forecastDuration").value);
     const loanType = document.querySelector('input[name="loanType"]:checked').value;
-
+    console.log({ amount, duration, loanType });
     // Send data to server
-    fetch('/api/credit_forecast', {
+    fetch('/loan/credit_forecast', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -86,7 +87,7 @@ document.getElementById("forecastForm").onsubmit = function(event) {
     })
     .then(response => response.json())
     .then(data => {
-        document.getElementById("forecastNotification").textContent = `Final amount with ROI: $${data.finalAmount}`;
+        document.getElementById("forecastNotification").textContent = `Final amount: Rs. ${Math.trunc(data.finalAmount,2)}  ROI: ${Math.trunc(data.ROI*100, 2)}%`;
     })
     .catch(error => console.error('Error:', error));
 };
@@ -96,19 +97,35 @@ document.getElementById("obtainLoanForm").onsubmit = function(event) {
     const amount = parseFloat(document.getElementById("obtainAmount").value);
     const duration = parseInt(document.getElementById("obtainDuration").value);
     const loanType = document.querySelector('input[name="obtainLoanType"]:checked').value;
-
+    
+    
     // Send data to server
-    fetch('/api/obtain_loan', {
+    fetch('/loan/obtain_loan', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ amount, duration, loanType })
+        body: JSON.stringify({ amount, duration, loanType, "customerId": customerId })
     })
     .then(response => response.json())
-    .then(data => {
-        document.getElementById("obtainNotification").textContent = `Loan granted! Updated balance: $${data.updatedBalance}`;
-        document.getElementById("balance").textContent = data.updatedBalance.toFixed(2);
+    .then(async data => {
+        console.log(data)
+        
+        fetch('/bankaccount/deposit', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({acc_id: acc_id1 ,amount})
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log(data);
+            
+            document.getElementById('balance').textContent = data.acc_balance.toFixed(2);
+            document.getElementById("obtainNotification").textContent = `Loan granted! Updated balance: $${data.acc_balance}`;
+        })
+        .catch(async error => console.error(`Error depositing: `, error));
+        
+        
     })
     .catch(error => console.error('Error:', error));
 };

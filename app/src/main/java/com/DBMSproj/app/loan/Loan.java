@@ -7,7 +7,8 @@ public record Loan(
     BigDecimal Rate_of_Interest,
     BigDecimal Loan_Amount,
     String Loan_Type,
-    Long customer_id
+    Long customer_id,
+    Integer duration
 ) {
     
 }

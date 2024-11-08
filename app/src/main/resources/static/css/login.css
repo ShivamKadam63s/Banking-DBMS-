@@ -7,6 +7,11 @@
     font-family: 'Poppins', sans-serif;
 }
 
+body {
+    background-image: url("../../images/bankbackground.jpeg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
 /* Navbar Styles */
 .navbar {
     display: flex;
@@ -29,19 +34,19 @@
 }
 
 #loginBtn {
-    font-size:medium;
-    border-style: solid;
-    border-radius: 10px;
-    padding: 5px;
+    font-size:small;
+    border-style: none;
+    border-radius: 5px;
+    padding: 10px 20px;
     background-color: transparent;
     color: white;
     text-decoration: none;
     margin: 0 1rem;
     cursor: pointer;
-    background-color: lightslategrey;
+    background-color: #007bff;
 }
 #loginBtn:hover {
-    background-color: slategrey;
+    background-color: #0056b3;
 }
 /* Modal Styles */
 .modal {
@@ -121,4 +126,10 @@
     color: red;
     font-family: 'Poppins', sans-serif;
     justify-content: center;
+}
+
+.container {
+    min-height: 100vh;    
+    display: flex;
+    flex-direction: column;
 }

@@ -49,4 +49,7 @@ public class BankTransactionService {
         acc_id);
     }
 
+    public List<BankTransaction> getBankTransactionforBankAccount(Long acc_id) {
+        return bankTransactionDAO.findByAccId(acc_id);
+    }
 }
